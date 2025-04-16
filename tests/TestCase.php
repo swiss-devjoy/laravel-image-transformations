@@ -1,37 +1,20 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace SwissDevjoy\LaravelImageTransformations\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Intervention\Image\Laravel\ServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use SwissDevjoy\LaravelImageTransformations\LaravelImageTransformationsServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            ServiceProvider::class,
+            LaravelImageTransformationsServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
-
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
-    }
+    public function getEnvironmentSetUp($app) {}
 }
